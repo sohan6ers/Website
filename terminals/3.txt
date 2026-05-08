@@ -1,0 +1,6 @@
+---
+pid: 20360
+cwd: |
+  C:\Users\sohan
+---
+PS C:\Users\sohan>

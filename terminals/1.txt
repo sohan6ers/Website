@@ -1,0 +1,9 @@
+---
+pid: 21184
+cwd: |
+  C:\Users\sohan
+---
+PS C:\Users\sohan>
+ *  History restored 
+
+PS C:\Users\sohan>

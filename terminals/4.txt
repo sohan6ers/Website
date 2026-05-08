@@ -1,0 +1,6 @@
+---
+pid: 14260
+cwd: |
+  C:\Users\sohan
+---
+PS C:\Users\sohan>
