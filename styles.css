@@ -1,12 +1,16 @@
 :root {
   color-scheme: light dark;
   --bg: #0b1220;
-  --panel: rgba(255, 255, 255, 0.06);
-  --panel-2: rgba(255, 255, 255, 0.04);
+  /*
+    Use more solid surfaces to remain readable when mobile browsers
+    apply "forced darkening" / contrast adjustments.
+  */
+  --panel: #0f172a;
+  --panel-2: #0b1324;
   --text: rgba(255, 255, 255, 0.92);
   --muted: rgba(255, 255, 255, 0.72);
   --subtle: rgba(255, 255, 255, 0.56);
-  --border: rgba(255, 255, 255, 0.1);
+  --border: rgba(255, 255, 255, 0.12);
   --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
   --accent: #8b5cf6;
   --accent-2: #22c55e;
@@ -19,8 +23,8 @@
 @media (prefers-color-scheme: light) {
   :root {
     --bg: #f7f8fc;
-    --panel: rgba(0, 0, 0, 0.04);
-    --panel-2: rgba(0, 0, 0, 0.03);
+    --panel: #ffffff;
+    --panel-2: #f3f5fb;
     --text: rgba(0, 0, 0, 0.88);
     --muted: rgba(0, 0, 0, 0.68);
     --subtle: rgba(0, 0, 0, 0.52);
@@ -49,9 +53,19 @@ body {
     Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   line-height: 1.55;
   color: var(--text);
+  background-color: var(--bg);
   background: radial-gradient(900px 600px at 10% 10%, rgba(139, 92, 246, 0.22), transparent 60%),
     radial-gradient(900px 600px at 90% 20%, rgba(34, 197, 94, 0.12), transparent 60%),
     var(--bg);
+}
+
+/* Prevent aggressive OS/browser recoloring where supported */
+html,
+body,
+.card,
+.hero-card,
+.site-header {
+  forced-color-adjust: none;
 }
 
 /* Improve mobile viewport behavior (iOS safe areas, etc.) */
@@ -335,7 +349,11 @@ code {
 .hero-card {
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--panel), white 2%),
+    var(--panel-2)
+  );
   box-shadow: var(--shadow);
   padding: 18px;
 }
@@ -345,7 +363,7 @@ code {
     background: rgba(247, 248, 252, 0.86);
   }
   .hero-card {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.03));
+    background: linear-gradient(180deg, var(--panel), var(--panel-2));
   }
 }
 
@@ -370,7 +388,7 @@ code {
 }
 
 .section.alt {
-  background: rgba(11, 18, 32, 0.35);
+  background: color-mix(in srgb, var(--bg), transparent 55%);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
@@ -526,7 +544,7 @@ code {
   padding: 6px 10px;
   border-radius: 999px;
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--panel);
   font-weight: 650;
   font-size: 0.9rem;
   color: var(--text);
@@ -534,7 +552,7 @@ code {
 
 @media (prefers-color-scheme: light) {
   .chip {
-    background: rgba(0, 0, 0, 0.04);
+    background: var(--panel-2);
   }
 }
 
