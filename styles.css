@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light dark;
   --bg: #0b1220;
   --panel: rgba(255, 255, 255, 0.06);
   --panel-2: rgba(255, 255, 255, 0.04);
@@ -115,8 +116,15 @@ code {
   top: 0;
   z-index: 5;
   backdrop-filter: blur(10px);
-  background: color-mix(in srgb, var(--bg), transparent 35%);
+  /* Fallback first (iOS Safari can behave oddly with color-mix) */
+  background: rgba(11, 18, 32, 0.86);
   border-bottom: 1px solid var(--border);
+}
+
+@supports (background: color-mix(in srgb, black, white)) {
+  .site-header {
+    background: color-mix(in srgb, var(--bg), transparent 35%);
+  }
 }
 
 .header-inner {
@@ -274,12 +282,23 @@ code {
 }
 
 .btn.primary {
-  border-color: color-mix(in srgb, var(--accent), transparent 55%);
+  border-color: rgba(139, 92, 246, 0.45);
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--accent), transparent 25%),
-    color-mix(in srgb, var(--accent-2), transparent 55%)
+    rgba(139, 92, 246, 0.65),
+    rgba(34, 197, 94, 0.25)
   );
+}
+
+@supports (background: color-mix(in srgb, black, white)) {
+  .btn.primary {
+    border-color: color-mix(in srgb, var(--accent), transparent 55%);
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--accent), transparent 25%),
+      color-mix(in srgb, var(--accent-2), transparent 55%)
+    );
+  }
 }
 
 .btn.subtle {
@@ -316,13 +335,28 @@ code {
 .hero-card {
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  background: linear-gradient(
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.04));
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+@media (prefers-color-scheme: light) {
+  .site-header {
+    background: rgba(247, 248, 252, 0.86);
+  }
+  .hero-card {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.03));
+  }
+}
+
+@supports (background: color-mix(in srgb, black, white)) {
+  .hero-card {
+    background: linear-gradient(
       180deg,
       color-mix(in srgb, var(--panel), transparent 10%),
       color-mix(in srgb, var(--panel-2), transparent 10%)
     );
-  box-shadow: var(--shadow);
-  padding: 18px;
+  }
 }
 
 .hero-card h2 {
@@ -336,9 +370,21 @@ code {
 }
 
 .section.alt {
-  background: color-mix(in srgb, var(--bg), transparent 55%);
+  background: rgba(11, 18, 32, 0.35);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
+}
+
+@media (prefers-color-scheme: light) {
+  .section.alt {
+    background: rgba(247, 248, 252, 0.55);
+  }
+}
+
+@supports (background: color-mix(in srgb, black, white)) {
+  .section.alt {
+    background: color-mix(in srgb, var(--bg), transparent 55%);
+  }
 }
 
 .section-head {
@@ -377,7 +423,13 @@ code {
 .card:hover {
   transform: translateY(-2px);
   background: var(--panel);
-  border-color: color-mix(in srgb, var(--border), var(--accent) 25%);
+  border-color: rgba(139, 92, 246, 0.35);
+}
+
+@supports (background: color-mix(in srgb, black, white)) {
+  .card:hover {
+    border-color: color-mix(in srgb, var(--border), var(--accent) 25%);
+  }
 }
 
 .reveal {
@@ -474,10 +526,22 @@ code {
   padding: 6px 10px;
   border-radius: 999px;
   border: 1px solid var(--border);
-  background: color-mix(in srgb, var(--panel), transparent 10%);
+  background: rgba(255, 255, 255, 0.06);
   font-weight: 650;
   font-size: 0.9rem;
   color: var(--text);
+}
+
+@media (prefers-color-scheme: light) {
+  .chip {
+    background: rgba(0, 0, 0, 0.04);
+  }
+}
+
+@supports (background: color-mix(in srgb, black, white)) {
+  .chip {
+    background: color-mix(in srgb, var(--panel), transparent 10%);
+  }
 }
 
 .chip:hover {
