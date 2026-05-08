@@ -53,6 +53,14 @@ body {
     var(--bg);
 }
 
+/* Improve mobile viewport behavior (iOS safe areas, etc.) */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -78,6 +86,12 @@ code {
 .container {
   width: min(var(--max), calc(100% - 40px));
   margin: 0 auto;
+}
+
+@media (max-width: 520px) {
+  .container {
+    width: min(var(--max), calc(100% - 28px));
+  }
 }
 
 .skip-link {
@@ -111,6 +125,26 @@ code {
   justify-content: space-between;
   gap: 18px;
   padding: 14px 0;
+}
+
+@media (max-width: 720px) {
+  .header-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+
+  .nav a {
+    white-space: nowrap;
+  }
 }
 
 .brand {
@@ -168,6 +202,12 @@ code {
   padding: 34px 0 8px;
 }
 
+@media (max-width: 520px) {
+  .hero {
+    padding: 22px 0 6px;
+  }
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: 1.35fr 0.65fr;
@@ -202,6 +242,17 @@ code {
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 18px;
+}
+
+@media (max-width: 520px) {
+  .cta-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    width: 100%;
+  }
 }
 
 .btn {
@@ -446,6 +497,18 @@ code {
   justify-content: space-between;
   gap: 14px;
   flex-wrap: wrap;
+}
+
+@media (max-width: 520px) {
+  .timeline-item .row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .time {
+    font-weight: 700;
+  }
 }
 
 .role {
